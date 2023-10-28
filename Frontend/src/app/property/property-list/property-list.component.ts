@@ -1,53 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-property-list',
   templateUrl: './property-list.component.html',
   styleUrls: ['./property-list.component.css']
 })
-export class PropertyListComponent {
-  Properties: Array<any> =[
-    {
-    "id" :1,
-    "name":"Skyline Property",
-    "type":"Residential",
-    "price":12000
-    },
-    {
-      "id" :2,
-      "name":"Dade Systems",
-      "type":"Commercial",
-      "price":35000
-    },
-    {
-      "id" :3,
-      "name":"Sun Net Suite",
-      "type":"Residential",
-      "price":47000
-    },
-    {
-      "id" :4,
-      "name":"Bansal Tenaments",
-      "type":"Residential",
-      "price":74000
-    },
-    {
-      "id" :5,
-      "name":"Amarshradhha",
-      "type":"Residential",
-      "price":4100
-    },
-    {
-      "id" :6,
-      "name":"KP Platina",
-      "type":"Commercial",
-      "price":12000
-    },
-    {
-      "id" :7,
-      "name":"Alembic City",
-      "type":"Commercial",
-      "price":79880
-    }
-  ]
+export class PropertyListComponent implements OnInit {
+  Properties: Array<any>=[];
+  constructor (private http:HttpClient) {}
+  ngOnInit(): void {
+    this.http.get('src/data/properties.json').subscribe();
+  }
 }
